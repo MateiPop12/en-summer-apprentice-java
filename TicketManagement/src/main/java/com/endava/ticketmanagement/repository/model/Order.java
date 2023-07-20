@@ -1,5 +1,6 @@
 package com.endava.TicketManagement.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,11 +28,13 @@ public class Order {
     @Column(name = "totalPrice")
     private float totalPrice;
 
-    @ManyToOne
+    @JsonManagedReference
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "customerID")
     private Customer customer;
 
-    @ManyToOne
+    @JsonManagedReference
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "ticketCategoryID")
     private TicketCategory ticketCategory;
 

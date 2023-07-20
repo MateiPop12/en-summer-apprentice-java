@@ -26,6 +26,7 @@ public class OrderServiceImplementation implements OrderService {
 
     @Override
     public List<OrderDto> findAll() {
+        System.out.println("Sunt in service");
         return orderRepository.findAll().stream().map(OrderToOrderDtoMapper::converter).collect(Collectors.toList());
     }
 

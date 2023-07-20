@@ -1,5 +1,6 @@
 package com.endava.TicketManagement.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,14 +32,17 @@ public class Event {
     @Column(name = "eventEndDate")
     private Date getEventEndDate;
 
-    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL,fetch=FetchType.LAZY)
     private List<TicketCategory>ticketCategoryList = new ArrayList<>();
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "venueID")
     private Venue venue;
 
-    @ManyToOne
+    @JsonBackReference
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "eventTypeID")
     private EventType eventType;
 

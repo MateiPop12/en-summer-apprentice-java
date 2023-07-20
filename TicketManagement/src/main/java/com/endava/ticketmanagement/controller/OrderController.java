@@ -24,8 +24,13 @@ public class OrderController {
         return orderService.findByNumberOfTickets(numberOfTickets);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<OrderDto> findAll(){return orderService.findAll();}
+    @RequestMapping(value = "/all",
+            produces = { "application/json" },
+            consumes = { "application/json" },
+            method = RequestMethod.GET)
+    public List<OrderDto> findAll(){
+        System.out.println("Suntem in output");
+        return orderService.findAll();}
 
     @PostMapping("/create")
     public ResponseEntity<OrderDto> create(@RequestBody OrderDto orderDto){
