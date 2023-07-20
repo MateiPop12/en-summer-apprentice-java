@@ -1,20 +1,23 @@
 package com.endava.TicketManagement.controller;
 
+import com.endava.TicketManagement.repository.OrderRepository;
 import com.endava.TicketManagement.service.OrderService;
 import com.endava.TicketManagement.service.dto.OrderDto;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    @Autowired
     private OrderService orderService;
+    @Autowired
+    OrderController(OrderService orderService){
+        this.orderService = orderService;
+    }
 
     @RequestMapping(value = "/find/{numberOfTickets}",method = RequestMethod.GET)
     public OrderDto findByNumberOfTickets(@PathVariable int numberOfTickets){
@@ -23,4 +26,10 @@ public class OrderController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<OrderDto> findAll(){return orderService.findAll();}
+
+    @PostMapping("/create")
+    public ResponseEntity<OrderDto> create(@RequestBody OrderDto orderDto){
+        OrderDto savedOrderDto = orderService.create(orderDto);
+        return ResponseEntity.ok(savedOrderDto);
+    }
 }

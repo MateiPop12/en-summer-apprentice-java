@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "venue")
 public class Venue {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long venueID;
 
     @Column(name = "venueLocation")

@@ -5,24 +5,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "orderID")
     private Long orderID;
 
     @Column(name = "orderedAt")
-    private Date orderedAt;
+        private LocalDateTime orderedAt;
 
     @Column(name = "numberOfTickets")
     private int numberOfTickets;
 
-    @Column(name = "totALlPrice")
+    @Column(name = "totalPrice")
     private float totalPrice;
 
     @ManyToOne

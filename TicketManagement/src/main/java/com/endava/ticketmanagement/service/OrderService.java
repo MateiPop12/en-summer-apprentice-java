@@ -1,5 +1,6 @@
 package com.endava.TicketManagement.service;
 
+import com.endava.TicketManagement.repository.model.Order;
 import com.endava.TicketManagement.service.dto.OrderDto;
 import org.springframework.stereotype.Component;
 
@@ -9,4 +10,5 @@ import java.util.List;
 public interface OrderService {
     public OrderDto findByNumberOfTickets(int numberOfTickets);
     public List<OrderDto> findAll();
+    public  OrderDto create(OrderDto orderDto);
 }

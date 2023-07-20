@@ -19,7 +19,7 @@ public class TicketManagementApplication {
 		//a bean, so I just get it from the context
 		AccountService as1 = context.getBean(AccountService.class);
 		AccountService as2 = context.getBean(AccountService.class);
-		System.out.println(as1.toString());
-		System.out.println(as2.toString());
+//		System.out.println(as1.toString());
+//		System.out.println(as2.toString());
 	}
 }

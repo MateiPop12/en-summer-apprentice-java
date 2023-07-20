@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "ticketCategory")
 public class TicketCategory {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long ticketCategoryID;
 
     @Column(name = "ticketCategoryDescription")
@@ -24,7 +24,7 @@ public class TicketCategory {
     @Column(name = "ticketCategoryPrice")
     private float ticketCategoryPrice;
 
-    @OneToMany(mappedBy = "TicketCategory",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "ticketCategory",cascade = CascadeType.ALL)
     private List<Order> orderList = new ArrayList<>();
 
     @ManyToOne

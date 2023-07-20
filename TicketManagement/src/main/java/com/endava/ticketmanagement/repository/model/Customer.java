@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name = "customer")
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long customerID;
     @Column(name = "customerName")
     private String customerName;
@@ -23,6 +23,6 @@ public class Customer {
     @Column(name = "customerEmail")
     private String customerEmail;
 
-    @OneToMany(mappedBy = "Customer", cascade = CascadeType.ALL)
-    private List<Event> eventList = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private List<Order> eventList = new ArrayList<>();
 }

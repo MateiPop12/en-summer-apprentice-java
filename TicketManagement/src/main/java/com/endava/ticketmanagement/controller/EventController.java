@@ -1,5 +1,6 @@
 package com.endava.TicketManagement.controller;
 
+import com.endava.TicketManagement.repository.model.Event;
 import com.endava.TicketManagement.service.EventService;
 import com.endava.TicketManagement.service.dto.EventDto;
 
@@ -11,8 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/event")
 public class EventController {
-    @Autowired
     private EventService eventService;
+    @Autowired
+    public EventController(EventService eventService){
+        this.eventService = eventService;
+    }
 
     @RequestMapping(value = "/find/{eventName}", method = RequestMethod.GET)
     public EventDto findByEventName(@PathVariable String eventName){

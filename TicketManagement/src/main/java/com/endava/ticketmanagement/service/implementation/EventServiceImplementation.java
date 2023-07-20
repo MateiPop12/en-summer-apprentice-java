@@ -4,6 +4,7 @@ import com.endava.TicketManagement.repository.EventRepository;
 import com.endava.TicketManagement.service.EventService;
 import com.endava.TicketManagement.service.dto.EventDto;
 import com.endava.TicketManagement.service.mapper.EventToEventDtoMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 public class EventServiceImplementation implements EventService{
 
     private EventRepository eventRepository;
-
+    @Autowired
     public EventServiceImplementation(EventRepository eventRepository){
         this.eventRepository = eventRepository;
     }
