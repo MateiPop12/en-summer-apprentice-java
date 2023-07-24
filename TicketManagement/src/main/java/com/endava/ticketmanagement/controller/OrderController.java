@@ -1,9 +1,7 @@
 package com.endava.TicketManagement.controller;
 
-import com.endava.TicketManagement.repository.OrderRepository;
 import com.endava.TicketManagement.service.OrderService;
 import com.endava.TicketManagement.service.dto.OrderDto;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,21 +18,21 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/find/{numberOfTickets}",method = RequestMethod.GET)
-    public OrderDto findByNumberOfTickets(@PathVariable int numberOfTickets){
+    public List<OrderDto> findByNumberOfTickets(@PathVariable int numberOfTickets){
+        System.out.println("Request order/find/" + numberOfTickets);
         return orderService.findByNumberOfTickets(numberOfTickets);
     }
 
-    @RequestMapping(value = "/all",
-            produces = { "application/json" },
-            consumes = { "application/json" },
-            method = RequestMethod.GET)
+    @RequestMapping(value = "/all",method = RequestMethod.GET)
     public List<OrderDto> findAll(){
-        System.out.println("Suntem in output");
-        return orderService.findAll();}
+        System.out.println("Request order/all");
+        return orderService.findAll();
+    }
 
-    @PostMapping("/create")
-    public ResponseEntity<OrderDto> create(@RequestBody OrderDto orderDto){
-        OrderDto savedOrderDto = orderService.create(orderDto);
+    @PostMapping("/create/{customerID}")
+    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto, @PathVariable Long customerID){
+        OrderDto savedOrderDto = new OrderDto();
+        orderService.createOrder(orderDto,customerID);
         return ResponseEntity.ok(savedOrderDto);
     }
 }

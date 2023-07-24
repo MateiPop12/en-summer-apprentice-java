@@ -25,6 +25,6 @@ public class Customer {
     private String customerEmail;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Order> eventList = new ArrayList<>();
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    private List<Order> orderList = new ArrayList<>();
 }

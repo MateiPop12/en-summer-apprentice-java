@@ -1,5 +1,6 @@
 package com.endava.TicketManagement.repository.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Venue {
     @Column(name = "venueCapacity")
     private int venueCapacity;
 
-    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL)
+    @JsonBackReference
+    @OneToMany(mappedBy = "venue",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<Event> eventList = new ArrayList<>();
 }

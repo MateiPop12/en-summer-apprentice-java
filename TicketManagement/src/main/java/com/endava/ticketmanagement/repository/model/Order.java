@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Data
@@ -29,12 +28,12 @@ public class Order {
     private float totalPrice;
 
     @JsonManagedReference
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "customerID")
     private Customer customer;
 
     @JsonManagedReference
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "ticketCategoryID")
     private TicketCategory ticketCategory;
 

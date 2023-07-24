@@ -33,16 +33,16 @@ public class Event {
     private Date getEventEndDate;
 
     @JsonBackReference
-    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "event",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     private List<TicketCategory>ticketCategoryList = new ArrayList<>();
 
     @JsonBackReference
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "venueID")
     private Venue venue;
 
     @JsonBackReference
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "eventTypeID")
     private EventType eventType;
 

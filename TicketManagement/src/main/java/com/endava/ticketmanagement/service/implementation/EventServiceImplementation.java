@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 @Service
 public class EventServiceImplementation implements EventService{
 
@@ -21,7 +22,6 @@ public class EventServiceImplementation implements EventService{
     public EventDto findByEventName(String eventName) {
         return EventToEventDtoMapper.converter(eventRepository.findByEventName(eventName));
     }
-
     @Override
     public List<EventDto> findAll() {
         return eventRepository.findAll().stream().map(EventToEventDtoMapper::converter).collect(Collectors.toList());
