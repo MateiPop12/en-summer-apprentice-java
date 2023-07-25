@@ -1,9 +1,12 @@
 package com.endava.TicketManagement.service;
 
-import com.endava.TicketManagement.repository.model.TicketCategory;
+import com.endava.TicketManagement.service.dto.TicketCategoryDto;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public interface TicketCategoryService {
-    public TicketCategory findByTicketCategoryID(Long ticketCategoryId);
+    TicketCategoryDto findByTicketCategoryID(Long ticketCategoryId);
+    List<TicketCategoryDto> findAll();
 }

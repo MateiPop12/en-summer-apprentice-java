@@ -6,12 +6,11 @@ import com.endava.TicketManagement.service.dto.OrderDto;
 public class OrderToOrderDtoMapper {
     public static OrderDto converter(Order order){
         OrderDto orderDto = new OrderDto();
-        orderDto.setOrderID(order.getOrderID());
+        orderDto.setEventID(order.getTicketCategory().getEvent().getEventID());
         orderDto.setOrderedAt(order.getOrderedAt());
+        orderDto.setTicketCategoryID(order.getTicketCategory().getTicketCategoryID());
         orderDto.setNumberOfTickets(order.getNumberOfTickets());
         orderDto.setTotalPrice(order.getTotalPrice());
-        orderDto.setCustomer(order.getCustomer());
-        orderDto.setTicketCategory(order.getTicketCategory());
         return orderDto;
     }
 }

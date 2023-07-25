@@ -17,15 +17,19 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @RequestMapping(value = "/find/{eventName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByEventName/{eventName}", method = RequestMethod.GET)
     public EventDto findByEventName(@PathVariable String eventName){
-        System.out.println("Request order/find/" + eventName);
+        System.out.println("Request event/findByEventName/" + eventName);
         return eventService.findByEventName(eventName);
     }
-
+    @RequestMapping(value = "/findByVenueIDAndEventType/{venueID}/{eventType}",method = RequestMethod.GET)
+    public EventDto findByVenueVenueIDAndEventTypeEventTypeName(@PathVariable Long venueID,@PathVariable String eventType){
+        System.out.println("Request event/findByVenueIDAndEventType/"+venueID+eventType);
+        return eventService.findByVenueVenueIDAndEventTypeEventTypeName(venueID,eventType);
+    }
     @RequestMapping(value = "/all",method = RequestMethod.GET)
     public List<EventDto> findAll(){
-        System.out.println("Request order/all");
+        System.out.println("Request event/all");
         return eventService.findAll();
     }
 }

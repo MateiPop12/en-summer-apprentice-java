@@ -18,6 +18,7 @@ import java.util.List;
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eventID")
     private Long eventID;
 
     @Column(name = "eventDescription")
@@ -45,6 +46,5 @@ public class Event {
     @ManyToOne(fetch=FetchType.EAGER)
     @JoinColumn(name = "eventTypeID")
     private EventType eventType;
-
 
 }

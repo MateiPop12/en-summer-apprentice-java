@@ -1,20 +1,17 @@
 package com.endava.TicketManagement.service.dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@JsonSerialize
-public class OrderDto {
+@JsonDeserialize
+public class OrderRequestDto {
     private Long eventID;
-    private LocalDateTime orderedAt;
     private Long ticketCategoryID;
     private int numberOfTickets;
-    private float totalPrice;
 }

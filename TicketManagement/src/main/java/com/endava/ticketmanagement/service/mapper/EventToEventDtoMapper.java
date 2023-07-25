@@ -5,13 +5,14 @@ import com.endava.TicketManagement.service.dto.EventDto;
 public class EventToEventDtoMapper {
     public static EventDto converter(Event event){
         EventDto eventDto = new EventDto();
-        eventDto.setEventDtoID(event.getEventID());
+        eventDto.setEventID(event.getEventID());
+        eventDto.setVenue(event.getVenue());
+        eventDto.setType(event.getEventType().getEventTypeName());
         eventDto.setEventDescription(event.getEventDescription());
         eventDto.setEventName(event.getEventName());
         eventDto.setEventStartDate(event.getEventStartDate());
         eventDto.setGetEventEndDate(event.getGetEventEndDate());
-        eventDto.setVenue(event.getVenue());
-        eventDto.setEventType(event.getEventType());
+        eventDto.setTicketCategoryList(event.getTicketCategoryList());
         return  eventDto;
     }
 }

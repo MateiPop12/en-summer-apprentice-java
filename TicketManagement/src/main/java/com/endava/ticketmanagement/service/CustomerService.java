@@ -5,5 +5,5 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface CustomerService{
-    public CustomerDto findByCustomerID(Long customerID);
+    CustomerDto findByCustomerID(Long customerID);
 }

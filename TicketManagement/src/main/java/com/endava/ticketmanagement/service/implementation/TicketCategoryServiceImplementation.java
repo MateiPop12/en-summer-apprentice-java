@@ -1,9 +1,13 @@
 package com.endava.TicketManagement.service.implementation;
 
 import com.endava.TicketManagement.repository.TicketCategoryRepository;
-import com.endava.TicketManagement.repository.model.TicketCategory;
 import com.endava.TicketManagement.service.TicketCategoryService;
+import com.endava.TicketManagement.service.dto.TicketCategoryDto;
+import com.endava.TicketManagement.service.mapper.TicketCategoryToTicketCategoryDtoMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TicketCategoryServiceImplementation implements TicketCategoryService {
@@ -13,7 +17,12 @@ public class TicketCategoryServiceImplementation implements TicketCategoryServic
         this.ticketCategoryRepository = ticketCategoryRepository;
     }
     @Override
-    public TicketCategory findByTicketCategoryID(Long ticketCategoryId) {
-        return null;
+    public List<TicketCategoryDto> findAll(){
+        return ticketCategoryRepository.findAll().stream().map(TicketCategoryToTicketCategoryDtoMapper::converter).collect(Collectors.toList());
     }
+    @Override
+    public TicketCategoryDto findByTicketCategoryID(Long ticketCategoryId) {
+        return TicketCategoryToTicketCategoryDtoMapper.converter(ticketCategoryRepository.findByTicketCategoryID(ticketCategoryId));
+    }
+
 }

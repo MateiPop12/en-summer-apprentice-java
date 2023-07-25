@@ -2,8 +2,8 @@ package com.endava.TicketManagement.controller;
 
 import com.endava.TicketManagement.service.OrderService;
 import com.endava.TicketManagement.service.dto.OrderDto;
+import com.endava.TicketManagement.service.dto.OrderRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,28 +11,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    private OrderService orderService;
+    private final OrderService orderService;
+
     @Autowired
-    OrderController(OrderService orderService){
+    OrderController(OrderService orderService) {
         this.orderService = orderService;
     }
 
-    @RequestMapping(value = "/find/{numberOfTickets}",method = RequestMethod.GET)
-    public List<OrderDto> findByNumberOfTickets(@PathVariable int numberOfTickets){
-        System.out.println("Request order/find/" + numberOfTickets);
+    @RequestMapping(value = "/findByNumberOfTickets/{numberOfTickets}", method = RequestMethod.GET)
+    public List<OrderDto> findByNumberOfTickets(@PathVariable int numberOfTickets) {
+        System.out.println("Request order/findByNumberOfTickets/" + numberOfTickets);
         return orderService.findByNumberOfTickets(numberOfTickets);
     }
 
-    @RequestMapping(value = "/all",method = RequestMethod.GET)
-    public List<OrderDto> findAll(){
+    @RequestMapping(value = "/findByCustomerID/{customerID}",method = RequestMethod.GET)
+    public OrderDto findByCustomerCustomerID(@PathVariable Long customerID){
+        System.out.println("Request order/findByCustomerID/" + customerID);
+        return orderService.findByCustomerCustomerID(customerID);
+    }
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<OrderDto> findAll() {
         System.out.println("Request order/all");
         return orderService.findAll();
     }
 
-    @PostMapping("/create/{customerID}")
-    public ResponseEntity<OrderDto> createOrder(@RequestBody OrderDto orderDto, @PathVariable Long customerID){
-        OrderDto savedOrderDto = new OrderDto();
-        orderService.createOrder(orderDto,customerID);
-        return ResponseEntity.ok(savedOrderDto);
+    @PostMapping(value = "/create/{customerID}", produces = {"application/json"}, consumes = {"application/json"})
+    public OrderDto createOrder(@RequestBody OrderRequestDto orderRequestDto, @PathVariable Long customerID) {
+        System.out.println(orderRequestDto);
+        return orderService.createOrder(orderRequestDto, customerID);
     }
 }
+

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Service
 public class EventServiceImplementation implements EventService{
 
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
     @Autowired
     public EventServiceImplementation(EventRepository eventRepository){
         this.eventRepository = eventRepository;
@@ -21,6 +21,10 @@ public class EventServiceImplementation implements EventService{
     @Override
     public EventDto findByEventName(String eventName) {
         return EventToEventDtoMapper.converter(eventRepository.findByEventName(eventName));
+    }
+    @Override
+    public EventDto findByVenueVenueIDAndEventTypeEventTypeName(Long venueID, String eventType) {
+        return EventToEventDtoMapper.converter(eventRepository.findByVenueVenueIDAndEventTypeEventTypeName(venueID,eventType));
     }
     @Override
     public List<EventDto> findAll() {

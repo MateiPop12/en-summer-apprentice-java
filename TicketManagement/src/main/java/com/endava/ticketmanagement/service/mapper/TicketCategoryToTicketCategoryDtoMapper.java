@@ -9,7 +9,8 @@ public class TicketCategoryToTicketCategoryDtoMapper {
         ticketCategoryDto.setTicketCategoryID(ticketCategory.getTicketCategoryID());
         ticketCategoryDto.setTicketCategoryDescription(ticketCategory.getTicketCategoryDescription());
         ticketCategoryDto.setTicketCategoryPrice(ticketCategory.getTicketCategoryPrice());
-        //ticketCategoryDto.setOrder(ticketCategory.get());
-        return null;
+        ticketCategoryDto.setOrderList(ticketCategory.getOrderList());
+        ticketCategoryDto.setEvent(ticketCategory.getEvent());
+        return ticketCategoryDto;
     }
 }

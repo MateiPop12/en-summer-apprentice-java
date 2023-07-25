@@ -1,7 +1,6 @@
 package com.endava.TicketManagement.repository.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +17,7 @@ import java.util.List;
 public class TicketCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ticketCategoryID")
     private Long ticketCategoryID;
 
     @Column(name = "ticketCategoryDescription")

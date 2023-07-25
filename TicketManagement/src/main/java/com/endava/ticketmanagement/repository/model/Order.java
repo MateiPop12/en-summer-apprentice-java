@@ -19,7 +19,7 @@ public class Order {
     private Long orderID;
 
     @Column(name = "orderedAt")
-        private LocalDateTime orderedAt;
+    private LocalDateTime orderedAt;
 
     @Column(name = "numberOfTickets")
     private int numberOfTickets;
